@@ -46,7 +46,6 @@ var cardLink=document.querySelector('.card-link');
 var leftButton=document.querySelector('.fa-arrow-circle-left');
 var rightButton=document.querySelector('.fa-arrow-circle-right')
 
-console.log(leftButton);
 
 let index=0;
 var slideCount=models.length;
@@ -73,41 +72,6 @@ function showSlide(index){
     cardLink.setAttribute('href',models[index].link);
 
 }
-
-
-
-
-// document.querySelector('.fa-arrow-circle-left').addEventListener('click',function(){
-//     console.log(index);
-//     index--;
-//     showSlide(index)
-// });
-
-// document.querySelector('.fa-arrow-circle-right').addEventListener('click',function(){
-//     console.log(index);
-//     index++;
-//     showSlide(index);
-// });
-
-// function showSlide(i){
-    
-//     if(i<0){
-//         i=slideCount-1;
-//     }
-//     else if(i>=slideCount-1){
-//         i=0;
-//     }else{
-//         index=i;
-//     }
-   
-  
-
-//     document.querySelector('.card-title').textContent=models[index].name;
-//     document.querySelector('.card-img-top').setAttribute('src',models[index].image);
-//     document.querySelector('.card-link').setAttribute('href',models[index].link);
-
-// }
-
 
 
 
