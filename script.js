@@ -38,6 +38,11 @@ var models=[
     
 ];
 
+var settings={
+    duration : 4000,
+    random : false
+}
+
 
 //UI VARRIABLES
 var cardImage=document.querySelector('.card-img-top');
@@ -45,14 +50,16 @@ var cardTitle=document.querySelector('.card-title');
 var cardLink=document.querySelector('.card-link');
 var leftButton=document.querySelector('.fa-arrow-circle-left');
 var rightButton=document.querySelector('.fa-arrow-circle-right')
+var allButtons=document.querySelectorAll('.arrow');
 
 
-let index=0;
+var index=0;
 var slideCount=models.length;
+var interval;
 
 //*-*-*-*-*-*-*-*-*-*-*-*-*MAIN*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-showSlide(index);
+init(settings);
 
 leftButton.addEventListener('click',function(){
     index = index == 0 ? slideCount-1 : index-1 ;
@@ -64,6 +71,41 @@ rightButton.addEventListener('click',function(){
     showSlide(index);
 });
 
+allButtons.forEach(function(item){
+    item.addEventListener('mouseenter',function(){
+        clearInterval(interval);
+    });
+});
+allButtons.forEach(function(item){
+    item.addEventListener('mouseleave',function(){
+        init(settings);
+    });
+});
+
+//*-*-*-*-*-*-*-*-*-*-*-*-*MAIN*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+function init(settings){
+    var prev;
+    interval = setInterval(function(){
+        if(settings.random){
+            do {
+                index=Math.floor(Math.random()*slideCount);
+
+            } while (index==prev);
+            prev=index;
+
+        }else{
+            if(index==slideCount-1){
+                index=0;
+            }
+            showSlide(index);
+            index++;
+            
+        }
+        showSlide(index);
+    },settings.duration);
+
+}
 
 function showSlide(index){
     
